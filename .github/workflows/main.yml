@@ -27,3 +27,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: Build docker image
         run: docker build -t  maxencen13/elonmuskfrbot .
+        
+      - name: Build the hello-world Docker image
+        run: |
+          echo $CR_PAT | docker login ghcr.io -u MaxenceN13 --password-stdin
+        env:
+          CR_PAT: ${{ secrets.CR_PAT }}
