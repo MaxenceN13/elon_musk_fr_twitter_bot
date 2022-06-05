@@ -6,7 +6,6 @@ jsonpatch==1.22
 jsonpointer==2.0
 jsonschema==3.2.0
 oauthlib==3.2.0
-pycups==1.9.73
 pycurl==7.45.1
 requests==2.27.1
 simplejson==3.16.0
