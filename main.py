@@ -15,7 +15,7 @@ client = getClient()
 while 1:
 	# Get the last tweet of Elon Musk (44196397)
 	# Mine 774932906468835329
-	lastTweets = client.get_users_tweets("44196397", user_auth=True)
+	lastTweets = client.get_users_tweets("774932906468835329", user_auth=True)
 
 	lastTweetId = ""
 	newLastTweetId = str(lastTweets.data[0].id)
