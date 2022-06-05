@@ -35,9 +35,9 @@ while 1:
 			with open(namefile, "w") as file:
 				file.write(newLastTweetId)
 				# Tweet the translation of the new tweet
-				t = translateDeeplAPI(newLastTweetText)
-				print(t)
-				response = client.create_tweet(text=t)
+				newLastTweetTextTranslated = translateDeeplAPI(newLastTweetText)
+				response = client.create_tweet(text=newLastTweetTextTranslated, 
+											   quote_tweet_id=newLastTweetId)
 			print(response)
 		else:
 			print("No update !")
