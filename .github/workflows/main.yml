@@ -28,7 +28,7 @@ jobs:
       - name: Build docker image
         run: docker build -t  maxencen13/elonmuskfrbot .
         
-      - name: Build the hello-world Docker image
+      - name: Connect to GitHub Contener Repository
         run: |
           echo $CR_PAT | docker login ghcr.io -u MaxenceN13 --password-stdin
         env:
