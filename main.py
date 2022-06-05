@@ -15,7 +15,7 @@ client = getClient()
 while 1:
 	# Get the last tweet of Elon Musk (44196397)
 	# Mine 774932906468835329
-	lastTweets = client.get_users_tweets("44196397", user_auth=True)
+	lastTweets = client.get_users_tweets("44196397", user_auth=True, max_results=5)
 
 	lastTweetId = ""
 	newLastTweetId = str(lastTweets.data[0].id)
@@ -41,4 +41,5 @@ while 1:
 			print(response)
 		else:
 			print("No update !")
-	time.sleep(10)
+	# Update all 5 minutes
+	time.sleep(60*4)
