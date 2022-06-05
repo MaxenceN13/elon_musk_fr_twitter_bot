@@ -11,8 +11,6 @@ def getClient():
 
 client = getClient()
 
-print(translateDeeplAPI)
-
 # Get the last tweet of Elon Musk (44196397)
 lastTweets = client.get_users_tweets("774932906468835329", user_auth=True)
 
