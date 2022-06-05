@@ -26,10 +26,14 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Build docker image
-        run: docker build -t  maxencen13/elonmuskfrbot .
+        run: docker build -t  maxencen13/elonmuskfrbot:latest .
         
       - name: Connect to GitHub Contener Repository
         run: |
           echo $CR_PAT | docker login ghcr.io -u MaxenceN13 --password-stdin
         env:
           CR_PAT: ${{ secrets.CR_PAT }}
+        
+      - name: Push docker image to GitHub Contener Repository
+        run: | 
+          docker push ghcr.io/maxencen13/elonmuskfrbot:latest
