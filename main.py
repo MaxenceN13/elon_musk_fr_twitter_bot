@@ -1,45 +1,30 @@
 import tweepy
 import config
-from translateDeeplAPI import translateDeeplAPI
-import time
+import myStreamingClient
+import translateDeeplAPI
 
-def getClient():
+def getMyClient():
 	return tweepy.Client(consumer_key=config.API_KEY,
-			     consumer_secret=config.API_SECRET,
-			     access_token=config.ACCESS_TOKEN,
-			     access_token_secret=config.ACCESS_TOKEN_SECRET)
+				 consumer_secret=config.API_SECRET,
+				 access_token=config.ACCESS_TOKEN,
+				 access_token_secret=config.ACCESS_TOKEN_SECRET)
 
 
-client = getClient()
+if __name__ == "__main__":
+	print("⭐ Lancement du programme ⭐")
 
-while 1:
-	# Get the last tweet of Elon Musk (44196397)
-	# Mine 774932906468835329
-	lastTweets = client.get_users_tweets("44196397", user_auth=True, max_results=5)
+	client = getMyClient()
 
-	lastTweetId = ""
-	newLastTweetId = str(lastTweets.data[0].id)
-	newLastTweetText = lastTweets.data[0].text
-	namefile = "lastTweetId.txt"
+	def tweetTranslatedText(response):
+		print("New Tweet Detected !")
+		translated_text = translateDeeplAPI.translate(response.data.text)
+		client.create_tweet(text=translated_text, quote_tweet_id=response.data.id, user_auth=1)
+		print(f"Original tweet : {response.data}\nTweet published : {translated_text}")
+	
+	streaming_client = myStreamingClient.myStreamingClient(config.BEARER_TOKEN, tweetTranslatedText)
 
-	# Check if Elon Musk has make a new tweet
-	# And save the id tweet in a file
-	try:
-		with open(namefile, "r") as file:
-			lastTweetId = file.read()
-	except Exception as e:
-		print(f"File '{namefile}' not existing")
-	finally:
-		if lastTweetId != newLastTweetId:
-			print(f"New tweet detected : {newLastTweetId}")
-			with open(namefile, "w") as file:
-				file.write(newLastTweetId)
-				# Tweet the translation of the new tweet
-				newLastTweetTextTranslated = translateDeeplAPI(newLastTweetText)
-				response = client.create_tweet(text=newLastTweetTextTranslated, 
-											   quote_tweet_id=newLastTweetId)
-			print(response)
-		else:
-			print("No update !")
-	# Update all 5 minutes
-	time.sleep(60*4)
+	print("Waiting for tweet... 🦻")
+
+	streaming_client.filter()
+						
+	print("Fin du programme!")
