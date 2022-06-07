@@ -18,4 +18,4 @@ COPY main.py .
 COPY config.py .
 COPY myStreamingClient.py .
 
-CMD [ "python", "u", "./main.py" ]
+CMD [ "python", "-u", "./main.py" ]
