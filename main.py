@@ -32,4 +32,4 @@ if __name__ == "__main__":
 
 	streaming_client.filter()
 						
-	print("Fin du programme!")
+	print("Fin du programme !")
