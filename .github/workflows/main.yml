@@ -32,15 +32,15 @@ jobs:
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
           TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
           DEEPL_AUTH_KEY: ${{ secrets.DEEPL_AUTH_KEY }}
-          run: |
-            touch config.py
-            echo TWITTER_API_KEY="$TWITTER_API_KEY" >> config.py
-            echo TWITTER_API_SECRET="$TWITTER_API_SECRET" >> config.py
-            echo TWITTER_ACCESS_TOKEN="$TWITTER_ACCESS_TOKEN" >> config.py
-            echo TWITTER_ACCESS_TOKEN_SECRET="$TWITTER_ACCESS_TOKEN_SECRET" >> config.py
-            echo TWITTER_BEARER_TOKEN="$TWITTER_BEARER_TOKEN" >> config.py
-            echo DEEPL_AUTH_KEY="$DEEPL_AUTH_KEY" >> config.py
-          shell: bash
+        run: |
+          touch config.py
+          echo TWITTER_API_KEY="$TWITTER_API_KEY" >> config.py
+          echo TWITTER_API_SECRET="$TWITTER_API_SECRET" >> config.py
+          echo TWITTER_ACCESS_TOKEN="$TWITTER_ACCESS_TOKEN" >> config.py
+          echo TWITTER_ACCESS_TOKEN_SECRET="$TWITTER_ACCESS_TOKEN_SECRET" >> config.py
+          echo TWITTER_BEARER_TOKEN="$TWITTER_BEARER_TOKEN" >> config.py
+          echo DEEPL_AUTH_KEY="$DEEPL_AUTH_KEY" >> config.py
+        shell: bash
             
       # Runs a single command using the runners shell
       - name: Build docker image
