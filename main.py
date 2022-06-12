@@ -18,9 +18,9 @@ if __name__ == "__main__":
 	client = getMyClient()
 	translator = deepl.Translator(config.DEEPL_AUTH_KEY)
 
-	# Recherche les informations du compte twitter associé à l'identifiant donné
+	# Search informations about twitter account related to id given
 	twitter_account_to_monitor = client.get_user(id=TWITTER_ACCOUNT_ID_TO_MONITOR, user_auth=1)
-	# Lève une exception si aucun compte ne correspond
+	# Raise exception if no account match with the id
 	if not twitter_account_to_monitor.data:
 		raise Exception(f"The identifier {TWITTER_ACCOUNT_ID_TO_MONITOR} does not correspond to any twitter account !")
 
