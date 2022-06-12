@@ -18,6 +18,12 @@ if __name__ == "__main__":
 	client = getMyClient()
 	translator = deepl.Translator(config.DEEPL_AUTH_KEY)
 
+	# Recherche les informations du compte twitter associé à l'identifiant donné
+	twitter_account_to_monitor = client.get_user(id=TWITTER_ACCOUNT_ID_TO_MONITOR, user_auth=1)
+	# Lève une exception si aucun compte ne correspond
+	if not twitter_account_to_monitor.data:
+		raise Exception(f"The identifier {TWITTER_ACCOUNT_ID_TO_MONITOR} does not correspond to any twitter account !")
+
 	def tweetTranslatedText(response):
 		print("New Tweet Detected !")
 
@@ -28,9 +34,9 @@ if __name__ == "__main__":
 		
 		print(f"Original tweet : {response.data}\nTweet published : {translated_text}")
 	
-	streaming_client = myStreamingClient.myStreamingClient(config.TWITTER_BEARER_TOKEN, TWITTER_ACCOUNT_ID_TO_MONITOR, tweetTranslatedText)
+	streaming_client = myStreamingClient.myStreamingClient(config.TWITTER_BEARER_TOKEN, twitter_account_to_monitor, tweetTranslatedText)
 
-	print("Waiting for tweet... 🦻")
+	print(f"Waiting for tweet from @{twitter_account_to_monitor.data.username} aka {twitter_account_to_monitor.data.name}... 🦻")
 
 	streaming_client.filter()
 						
