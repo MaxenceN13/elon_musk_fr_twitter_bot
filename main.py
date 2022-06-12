@@ -3,11 +3,13 @@ import config
 import myStreamingClient
 import deepl
 
+TWITTER_ACCOUNT_ID_TO_MONITOR = "44196397"
+
 def getMyClient():
-	return tweepy.Client(consumer_key=config.API_KEY,
-				 consumer_secret=config.API_SECRET,
-				 access_token=config.ACCESS_TOKEN,
-				 access_token_secret=config.ACCESS_TOKEN_SECRET)
+	return tweepy.Client(consumer_key=config.TWITTER_API_KEY,
+				 consumer_secret=config.TWITTER_API_SECRET,
+				 access_token=config.TWITTER_ACCESS_TOKEN,
+				 access_token_secret=config.TWITTER_ACCESS_TOKEN_SECRET)
 
 
 if __name__ == "__main__":
@@ -26,7 +28,7 @@ if __name__ == "__main__":
 		
 		print(f"Original tweet : {response.data}\nTweet published : {translated_text}")
 	
-	streaming_client = myStreamingClient.myStreamingClient(config.BEARER_TOKEN, tweetTranslatedText)
+	streaming_client = myStreamingClient.myStreamingClient(config.TWITTER_BEARER_TOKEN, tweetTranslatedText)
 
 	print("Waiting for tweet... 🦻")
 

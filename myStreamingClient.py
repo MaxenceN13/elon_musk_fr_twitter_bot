@@ -3,10 +3,10 @@ import tweepy
 
 # Class héritant de StreamingClient
 class myStreamingClient(tweepy.StreamingClient):
-	def __init__(self, bearer_token, callback_function):
+	def __init__(self, bearer_token, account_id, callback_function):
 		tweepy.StreamingClient.__init__(self, bearer_token = bearer_token)
 		delAllRules(self)
-		self.add_rules(tweepy.StreamRule(value=f"from:{config.TWITTER_ACCOUNT_ID_TO_MONITOR}"))
+		self.add_rules(tweepy.StreamRule(value=f"from:{account_id}"))
 		self.callback_function = callback_function
 
 	# Redéfinit la méthode on_response
