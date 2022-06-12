@@ -28,7 +28,7 @@ if __name__ == "__main__":
 		
 		print(f"Original tweet : {response.data}\nTweet published : {translated_text}")
 	
-	streaming_client = myStreamingClient.myStreamingClient(config.TWITTER_BEARER_TOKEN, tweetTranslatedText)
+	streaming_client = myStreamingClient.myStreamingClient(config.TWITTER_BEARER_TOKEN, TWITTER_ACCOUNT_ID_TO_MONITOR, tweetTranslatedText)
 
 	print("Waiting for tweet... 🦻")
 
