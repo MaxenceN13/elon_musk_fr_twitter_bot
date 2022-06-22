@@ -1,3 +1,4 @@
+from random import betavariate
 import tweepy
 import config
 import myStreamingClient
@@ -34,10 +35,10 @@ if __name__ == "__main__":
 		
 		print(f"Original tweet : {response.data}\nTweet published : {translated_text}")
 	
-	streaming_client = myStreamingClient.myStreamingClient(config.TWITTER_BEARER_TOKEN, twitter_account_to_monitor, tweetTranslatedText)
+	streaming_client = myStreamingClient.myStreamingClient(config.TWITTER_BEARER_TOKEN, TWITTER_ACCOUNT_ID_TO_MONITOR, tweetTranslatedText)
 
 	print(f"Waiting for tweet from @{twitter_account_to_monitor.data.username} aka {twitter_account_to_monitor.data.name}... 🦻")
 
 	streaming_client.filter()
-						
+
 	print("Fin du programme !")
