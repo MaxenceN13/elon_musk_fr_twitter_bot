@@ -4,7 +4,7 @@ import config
 import myStreamingClient
 import deepl
 
-TWITTER_ACCOUNT_ID_TO_MONITOR = "44196397"
+TWITTER_ACCOUNT_ID_TO_MONITOR = "774932906468835329"
 
 def getMyClient():
 	return tweepy.Client(consumer_key=config.TWITTER_API_KEY,
