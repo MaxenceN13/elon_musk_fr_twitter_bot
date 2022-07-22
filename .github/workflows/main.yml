@@ -44,7 +44,9 @@ jobs:
             
       # Runs a single command using the runners shell
       - name: Build docker image
-        run: docker build -t ghcr.io/maxencen13/elonmuskfrbot:latest .
+        run: docker buildx build \
+          --tag ghcr.io/maxencen13/elonmuskfrbot:latest \
+          --platform linux/amd64,linux/arm/v7,linux/arm64 .
         
       - name: Connect to GitHub Contener Repository
         run: |
