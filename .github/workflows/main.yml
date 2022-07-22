@@ -47,20 +47,15 @@ jobs:
         uses: crazy-max/ghaction-docker-buildx@v1
         with:
           version: latest
-            
-      # Runs a single command using the runners shell
-      - name: Build docker image
-        run: |
-          docker buildx build \
-            --tag your-username/multiarch-example:latest \
-            --platform linux/amd64,linux/arm/v7,linux/arm64 .
-        
+          
       - name: Connect to GitHub Contener Repository
         run: |
           echo $CR_PAT | docker login ghcr.io -u MaxenceN13 --password-stdin
         env:
           CR_PAT: ${{ secrets.CR_PAT }}
-        
-      - name: Push docker image to GitHub Contener Repository
-        run: | 
-          docker push ghcr.io/maxencen13/elonmuskfrbot:latest
+            
+      - name: Build and push docker image multi architecture
+        run: |
+          docker buildx build --push \
+            --tag ghcr.io/maxencen13/elonmuskfrbot:latest \
+            --platform linux/amd64,linux/arm/v7,linux/arm64 .
