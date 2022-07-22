@@ -41,6 +41,12 @@ jobs:
           echo TWITTER_BEARER_TOKEN=\"$TWITTER_BEARER_TOKEN\" >> config.py
           echo DEEPL_AUTH_KEY=\"$DEEPL_AUTH_KEY\" >> config.py
         shell: bash
+      
+      - name: install buildx
+        id: buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+        with:
+          version: latest
             
       # Runs a single command using the runners shell
       - name: Build docker image
