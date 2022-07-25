@@ -26,14 +26,14 @@ if __name__ == "__main__":
 		raise Exception(f"The identifier {TWITTER_ACCOUNT_ID_TO_MONITOR} does not correspond to any twitter account !")
 
 	def tweetTranslatedText(response):
-		print("New Tweet Detected !")
+		print(f"New Tweet Detected !\nOriginal tweet : {response.data}")
 
 		# Get the translation of the tweet
 		translated_text = translator.translate_text(response.data.text, source_lang="EN", target_lang="FR").text
 		# Create a new tweet with the translated text and quote the tweet translated
 		client.create_tweet(text=translated_text, quote_tweet_id=response.data.id, user_auth=1)
 		
-		print(f"Original tweet : {response.data}\nTweet published : {translated_text}")
+		print(f"Tweet published : {translated_text}")
 	
 	streaming_client = myStreamingClient.myStreamingClient(config.TWITTER_BEARER_TOKEN, TWITTER_ACCOUNT_ID_TO_MONITOR, tweetTranslatedText)
 
